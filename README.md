@@ -1,7 +1,7 @@
 # 📉 Customer Churn Prediction System  
 
-[![CI](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/jenilkathrotia/customer-churn-prediction/actions)
-[![codecov](https://codecov.io/gh/jenilkathrotia/customer-churn-prediction/branch/main/graph/badge.svg?token=0ae8b17e-1f5c-4ef0-8c5a-2961eafc1337)](https://codecov.io/gh/jenilkathrotia/customer-churn-prediction)
+[![CI](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml)
+
 
 
 ## Overview
