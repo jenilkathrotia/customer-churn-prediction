@@ -1,0 +1,21 @@
+# Ignore virtual environments
+venv/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore datasets
+data/*.csv
+data/*.xlsx
+
+# Ignore model artifacts
+app/*.joblib
+
+# Ignore OS files
+.DS_Store
+
