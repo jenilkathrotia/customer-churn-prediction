@@ -1,4 +1,4 @@
-name: CI
+kname: CI
 
 on:
   push:
@@ -21,5 +21,6 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests
         run: |
-          PYTHONPATH=. pytest -v
+          export PYTHONPATH=.
+          pytest -v
 
