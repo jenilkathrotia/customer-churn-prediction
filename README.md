@@ -2,6 +2,7 @@
 
 ![CI](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml/badge.svg)
 
+
 ## Overview
 This project is a **machine learning application** that predicts whether a customer is likely to stop using a company’s product or service (**churn**).  
 
