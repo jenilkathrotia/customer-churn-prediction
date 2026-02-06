@@ -2,21 +2,21 @@
 
 A machine learning project that predicts customer churn using Logistic Regression with 77% accuracy. Includes a REST API built with Flask for real-time predictions.
 
-## 🎯 Project Overview
+## Project Overview
 
 - **Dataset**: 7,043 customer records with 21 features
 - **Best Model**: Logistic Regression
 - **Accuracy**: 77.15%
 - **F1-Score**: 0.5729
 
-## 🚀 Features
+## Features
 
 - Data preprocessing and feature engineering
 - Multiple model comparison (Logistic Regression, Random Forest, Gradient Boosting)
 - REST API for predictions
 - Saved model artifacts for deployment
 
-## 📁 Project Structure
+## Project Structure
 ```
 customer-churn-prediction/
 ├── model_output/
@@ -55,7 +55,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 📊 Training the Model
+## Training the Model
 
 Run the training script to preprocess data and train models:
 ```bash
@@ -143,7 +143,7 @@ Response:
 }
 ```
 
-## 📈 Model Performance
+## Model Performance
 
 | Model               | Accuracy | F1-Score |
 |---------------------|----------|----------|
@@ -168,21 +168,9 @@ Response:
 - **Flask** - REST API framework
 - **pickle** - Model serialization
 
-## 📝 Future Improvements
-
-- [ ] Hyperparameter tuning with GridSearchCV
-- [ ] Add feature importance visualization
-- [ ] Implement SMOTE for better class balance
-- [ ] Create web UI for predictions
-- [ ] Deploy to cloud (Heroku/AWS/Render)
-- [ ] Add model monitoring and retraining pipeline
-
 ## 👤 Author
 
 **Jenil Kathrotia**
 - GitHub: [@jenilkathrotia](https://github.com/jenilkathrotia)
-- LinkedIn: [Jenil Kathrotia](https://linkedin.com/in/jenilkathrotia)
+- LinkedIn: [Jenil Kathrotia](https://www.linkedin.com/in/jenil-kathrotiya-655935257)
 
-## 📄 License
-
-This project is open source and available under the MIT License.
