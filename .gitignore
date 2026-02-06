@@ -1,18 +1,33 @@
-# Ignore virtual environments
+# Virtual Environment
 venv/
+env/
+ENV/
 
-# Ignore Python cache
+# Python
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+*.so
+.Python
 
-# Ignore Jupyter notebook checkpoints
-.ipynb_checkpoints/
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# Ignore datasets
-data/*.csv
-data/*.xlsx
+# Model outputs (optional - you might want to commit these)
+# model_output/
 
-# Ignore OS files
+# macOS
 .DS_Store
 
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files (if large)
+*.csv
+data/
+
+# Logs
+*.log

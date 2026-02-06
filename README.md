@@ -1,81 +1,188 @@
-# 📉 Customer Churn Prediction System  
+# Customer Churn Prediction
 
-[![CI](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/jenilkathrotia/customer-churn-prediction/actions/workflows/ci.yml)
+A machine learning project that predicts customer churn using Logistic Regression with 77% accuracy. Includes a REST API built with Flask for real-time predictions.
 
+## 🎯 Project Overview
 
+- **Dataset**: 7,043 customer records with 21 features
+- **Best Model**: Logistic Regression
+- **Accuracy**: 77.15%
+- **F1-Score**: 0.5729
 
-## Overview
-This project is a **machine learning application** that predicts whether a customer is likely to stop using a company’s product or service (**churn**).  
+## 🚀 Features
 
-Churn is a critical problem in industries like **telecom, banking, SaaS, retail, e-commerce, and streaming services**.  
-By predicting churn in advance, businesses can take preventive actions (e.g., discounts, personalized offers, improved support) to **retain customers and reduce revenue loss**.  
+- Data preprocessing and feature engineering
+- Multiple model comparison (Logistic Regression, Random Forest, Gradient Boosting)
+- REST API for predictions
+- Saved model artifacts for deployment
 
----
-
-## Features
-- **Data Preprocessing & Feature Engineering**  
-  - Handles missing values, scales numerical features, and encodes categoricals  
-  - Supports class imbalance techniques (SMOTE, class weights)
-
-- **Machine Learning Models**  
-  - Logistic Regression, Random Forest, XGBoost, Neural Nets (optional)  
-  - Model selection based on **Precision-Recall AUC** and **ROC-AUC**
-
-- **Explainability (XAI)**  
-  - SHAP/LIME to explain predictions  
-  - Identify top reasons for customer churn
-
-- **Deployment**  
-  - **Streamlit App** → interactive dashboard for predictions + explanations  
-  - **FastAPI Service** → REST API endpoint for integration into CRM systems  
-  - **Dockerized** → portable and deployable on AWS/GCP/Azure
-
----
-
-##  Tech Stack
-- **Languages:** Python 3.11  
-- **Libraries:** pandas, numpy, scikit-learn, xgboost, imbalanced-learn, shap, matplotlib, seaborn  
-- **Web Frameworks:** Streamlit, FastAPI  
-- **DevOps:** Docker, GitHub Actions (CI)  
-- **Testing:** pytest  
-
----
-
-## Dataset
-- Example dataset: [Telco Customer Churn (Kaggle)](https://www.kaggle.com/blastchar/telco-customer-churn)  
-- Target variable: `Churn` (`Yes` = 1, `No` = 0)  
-- Features include demographics, services subscribed, billing/payment info, and usage behavior  
-
-**Note:** Dataset is not included in the repo due to licensing. Please download from Kaggle and place in `data/`.
-
----
-
-## Project Structure
+## 📁 Project Structure
+```
 customer-churn-prediction/
-├── README.md # Project overview
-├── benchmarks.md # Model benchmarks & results
-├── requirements.txt # Python dependencies
-├── Dockerfile # Container setup
-├── data/ # Dataset (not included, add here)
-├── notebooks/ # Jupyter notebooks (EDA, experiments)
-├── src/ # ML pipeline code
-│ ├── preprocess.py # Preprocessing & feature engineering
-│ ├── train.py # Model training & evaluation
-│ ├── explain.py # SHAP/LIME explainability
-│ └── predict.py # Model prediction utilities
-├── app/ # Deployment apps
-│ ├── streamlit_app.py # Streamlit dashboard
-│ └── api.py # FastAPI service
-└── tests/ # Unit tests
-├── test_model.py
-└── test_api.py
+├── model_output/
+│   ├── model_artifacts.pkl       # Trained model
+│   ├── model_comparison.csv      # Model performance metrics
+│   ├── X_test.npy                # Test features
+│   └── y_test.npy                # Test labels
+├── preprocess_and_train_simple.py # Training pipeline
+├── app.py                         # Flask REST API
+├── requirements.txt               # Python dependencies
+└── README.md                      # This file
+```
 
+## 🛠️ Installation
 
----
+### Prerequisites
+- Python 3.14
+- pip
 
-## Setup & Installation
+### Setup
 
-### 1. Clone the repo
+1. Clone the repository
 ```bash
-git clone https://github.com/jenilkathrotiya/customer-churn-prediction.git
-cd customer-churn-predictionimport joblib
+git clone https://github.com/jenilkathrotia/customer-churn-prediction.git
+cd customer-churn-prediction
+```
+
+2. Create virtual environment
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## 📊 Training the Model
+
+Run the training script to preprocess data and train models:
+```bash
+python preprocess_and_train_simple.py
+```
+
+This will:
+- Load and preprocess the dataset
+- Train 3 different models
+- Save the best model to `model_output/`
+- Display performance metrics
+
+### Training Output:
+```
+======================================================================
+CUSTOMER CHURN PREDICTION
+======================================================================
+
+[1/5] Loading Data...
+   Loaded: 7,043 rows, 21 columns
+
+[2/5] Finding Target Column...
+   Target: 'Churn'
+
+[3/5] Preprocessing...
+   Features: (7043, 6559)
+
+[4/5] Splitting...
+
+[5/5] Training Models...
+   Logistic Regression...
+      Accuracy: 0.7715, F1: 0.5729
+```
+
+## 🌐 API Usage
+
+### Start the API Server
+```bash
+python app.py
+```
+
+The API will run at `http://127.0.0.1:5000/`
+
+### API Endpoints
+
+#### 1. Health Check
+```bash
+curl http://127.0.0.1:5000/health
+```
+
+Response:
+```json
+{"status": "healthy"}
+```
+
+#### 2. Model Information
+```bash
+curl http://127.0.0.1:5000/
+```
+
+Response:
+```json
+{
+  "status": "running",
+  "model": "Logistic Regression",
+  "accuracy": 0.7715,
+  "features": 6559
+}
+```
+
+#### 3. Predict Churn
+```bash
+curl -X POST http://127.0.0.1:5000/predict \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+Response:
+```json
+{
+  "churn": 0,
+  "churn_label": "No",
+  "probability": 0.0134,
+  "confidence": 0.9866
+}
+```
+
+## 📈 Model Performance
+
+| Model               | Accuracy | F1-Score |
+|---------------------|----------|----------|
+| Logistic Regression | 0.7715   | 0.5729   |
+| Random Forest       | 0.7956   | 0.5623   |
+| Gradient Boosting   | 0.7935   | 0.5544   |
+
+### Classification Report (Best Model)
+```
+              precision    recall  f1-score   support
+          No       0.85      0.84      0.84      1035
+         Yes       0.57      0.58      0.57       374
+    accuracy                           0.77      1409
+```
+
+## 🔧 Technologies Used
+
+- **Python 3.14**
+- **scikit-learn** - Machine learning models
+- **pandas** - Data manipulation
+- **numpy** - Numerical operations
+- **Flask** - REST API framework
+- **pickle** - Model serialization
+
+## 📝 Future Improvements
+
+- [ ] Hyperparameter tuning with GridSearchCV
+- [ ] Add feature importance visualization
+- [ ] Implement SMOTE for better class balance
+- [ ] Create web UI for predictions
+- [ ] Deploy to cloud (Heroku/AWS/Render)
+- [ ] Add model monitoring and retraining pipeline
+
+## 👤 Author
+
+**Jenil Kathrotia**
+- GitHub: [@jenilkathrotia](https://github.com/jenilkathrotia)
+- LinkedIn: [Jenil Kathrotia](https://linkedin.com/in/jenilkathrotia)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
